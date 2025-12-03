@@ -10,6 +10,7 @@ import {useEffect} from "react";
 function Layout() {
   const auth = useAuth();
   const { get } = useFetch(auth, ServerConstant.ApiServer);
+
   const { data: user, refetch } = useQuery({
     queryKey: ['currentUser'],
     queryFn: async () => {
@@ -24,7 +25,7 @@ function Layout() {
 
   return (
     <div className="app-shell">
-      <Navbar user={user} onLogout={auth.signoutRedirect} />
+      <Navbar user={user} onLogout={auth.signoutRedirect} isAuthenticated={auth.isAuthenticated}/>
       <main className="main-content">
         <Outlet />
       </main>
