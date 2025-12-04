@@ -11,15 +11,15 @@ function ProfilePage() {
   const [status, setStatus] = useState<{message: string, type: string} | null>(null);
   const [saving, setSaving] = useState(false);
   const qc = useQueryClient();
-  const [form, setForm] = useState<{given_name: string, family_name: string, bio: string, avatar: string} | null>(null)
+  const [form, setForm] = useState<{givenName: string, familyName: string, bio: string, avatar: string} | null>(null)
 
   const { data: user, isLoading } = useQuery<Record<string, string>>({
     queryFn: async () => {
       const user: Record<string, string> = await get("api/userInfo")
       if (user) {
         setForm({
-          given_name: user?.given_name || '',
-          family_name: user?.family_name || '',
+          givenName: user?.givenName || '',
+          familyName: user?.familyName || '',
           bio: user?.bio || '',
           avatar: user?.avatar || '',
         })
@@ -50,10 +50,10 @@ function ProfilePage() {
   });
 
   const initials = useMemo(() => {
-    const first = form?.given_name?.[0] || user?.given_name?.[0];
-    const last = form?.family_name?.[0] || user?.family_name?.[0];
+    const first = form?.givenName?.[0] || user?.givenName?.[0];
+    const last = form?.familyName?.[0] || user?.familyName?.[0];
     return [first, last].filter(Boolean).join('').toUpperCase() || 'U';
-  }, [form?.given_name, form?.family_name, user?.given_name, user?.family_name]);
+  }, [form?.givenName, form?.familyName, user?.givenName, user?.familyName]);
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -87,7 +87,7 @@ function ProfilePage() {
           )}
           <div>
             <h2 style={{ margin: '0 0 0.25rem' }}>
-              {[form?.given_name || user?.givenName, form?.family_name || user?.familyName].filter(Boolean).join(' ') ||
+              {[form?.givenName || user?.givenName, form?.familyName || user?.familyName].filter(Boolean).join(' ') ||
                 'Your Name'}
             </h2>
             <p style={{ margin: 0, color: 'var(--color-muted)' }}>{user?.email}</p>
@@ -114,7 +114,7 @@ function ProfilePage() {
                 type="text"
                 name="given_name"
                 placeholder="First name"
-                value={form?.given_name}
+                value={form?.givenName}
                 onChange={handleChange}
                 required
                 autoComplete="given-name"
@@ -127,7 +127,7 @@ function ProfilePage() {
                 type="text"
                 name="family_name"
                 placeholder="Last name"
-                value={form?.family_name}
+                value={form?.familyName}
                 onChange={handleChange}
                 required
                 autoComplete="family-name"

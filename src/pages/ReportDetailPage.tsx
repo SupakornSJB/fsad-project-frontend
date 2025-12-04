@@ -206,8 +206,8 @@ function ReportDetailPage() {
   const updatedLabel = problem.updated_at
     ? new Date(problem.updated_at).toLocaleString(undefined, { month: 'short', day: 'numeric', year: 'numeric' })
     : null;
-  const authorName = problem.creator
-    ? [problem.creator.first_name, problem.creator.last_name].filter(Boolean).join(' ')
+  const authorName = problem.createdBy
+    ? [problem.createdBy.first_name, problem.createdBy.last_name].filter(Boolean).join(' ')
     : 'Community member';
   const status = problem.status || 'Open';
 

@@ -10,7 +10,7 @@ function ReportCard({ report, onEdit, onDelete, onVote, onDownvote, upvoteCount,
   const canEdit = isOwner
 
   const voteCount = report.vote_count ?? report.votes?.length ?? 0;
-  const authorName = report.creator
+  const authorName = report.createdBy
     ? [report.createdBy.givenName, report.createdBy.familyName].filter(Boolean).join(' ')
     : 'Community member';
 

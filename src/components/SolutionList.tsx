@@ -77,7 +77,7 @@ function SolutionList({ solutions, onUpdate, onDelete }) {
                   ))}
                 </select>
                 <div className="solution-actions">
-                  <button type="button" className="btn btn-primary" onClick={() => submitEdit(solution.solution_id)}>
+                  <button type="button" className="btn btn-primary" onClick={() => submitEdit(solution.id)}>
                     Save solution
                   </button>
                   <button type="button" className="btn btn-ghost" onClick={cancelEdit}>
@@ -89,7 +89,7 @@ function SolutionList({ solutions, onUpdate, onDelete }) {
               <p className="solution-text">{solution.content}</p>
             )}
 
-            {canModify && editingId !== solution.solution_id && (
+            {canModify && editingId !== solution.id && (
               <div className="solution-actions">
                 <button type="button" className="btn btn-ghost" onClick={() => startEdit(solution)}>
                   Edit
