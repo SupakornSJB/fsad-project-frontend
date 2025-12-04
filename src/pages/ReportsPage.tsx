@@ -99,11 +99,12 @@ function ReportsPage() {
       votesCast: 0,
     };
 
+    console.log("vote", myVotes);
     const total = problems.length;
     const open = problems.filter((report) => !report.status || report.status === 'Open').length;
     const resolved = problems.filter((report) => report.status === "Closed").length;
-    const contributions = myProblems.length;
-    const votesCast = myVotes?.length;
+    const contributions = myProblems?.length;
+    const votesCast = myVotes?.keys()?.length ?? 0;
 
     return {
       total,
@@ -112,7 +113,7 @@ function ReportsPage() {
       contributions,
       votesCast,
     };
-  }, [problems, myProblems, votes]);
+  }, [problems, myProblems, votes, myVotes]);
 
   const handleCloseForm = () => {
     setEditingReport(null);
