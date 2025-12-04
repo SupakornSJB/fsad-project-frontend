@@ -104,7 +104,7 @@ function ReportsPage() {
     const open = problems.filter((report) => !report.status || report.status === 'Open').length;
     const resolved = problems.filter((report) => report.status === "Closed").length;
     const contributions = myProblems?.length;
-    const votesCast = myVotes?.keys()?.length ?? 0;
+    const votesCast = Object.keys(myVotes ?? {}).length ?? 0;
 
     return {
       total,
